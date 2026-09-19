@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mobile Remote Control</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      padding: 18px;
+      background: #111827;
+      border-bottom: 1px solid #334155;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .container {
+      padding: 16px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .device {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px;
+      background: #0f172a;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    .online {
+      color: #22c55e;
+      font-size: 13px;
+    }
+
+    .offline {
+      color: #ef4444;
+      font-size: 13px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border: 0;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .danger {
+      background: #dc2626;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .control-grid button {
+      margin-top: 0;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .info-box {
+      background: #0f172a;
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    .value {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    #message {
+      color: #38bdf8;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>📱 Mobile Remote Control</h1>
+</header>
+
+<div class="container">
+
+  <!-- Device -->
+  <div class="card">
+
+    <h2>My Devices</h2>
+
+    <div class="device">
+
+      <div>
+        <strong>Android Device</strong>
+        <br>
+        <span class="online">● Online</span>
+      </div>
+
+      <div>
+        🔋 82%
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Device Information -->
+  <div class="card">
+
+    <h2>Device Information</h2>
+
+    <div class="info">
+
+      <div class="info-box">
+        Battery
+        <div class="value">82%</div>
+      </div>
+
+      <div class="info-box">
+        Storage
+        <div class="value">64 GB</div>
+      </div>
+
+      <div class="info-box">
+        Network
+        <div class="value">Wi-Fi</div>
+      </div>
+
+      <div class="info-box">
+        Status
+        <div class="value">Online</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Remote Controls -->
+  <div class="card">
+
+    <h2>Remote Controls</h2>
+
+    <div class="control-grid">
+
+      <button onclick="sendCommand('back')">
+        ◀ Back
+      </button>
+
+      <button onclick="sendCommand('home')">
+        🏠 Home
+      </button>
+
+      <button onclick="sendCommand('tap')">
+        👆 Tap
+      </button>
+
+      <button onclick="sendCommand('swipe')">
+        👆 Swipe
+      </button>
+
+    </div>
+
+    <button onclick="sendCommand('screen')">
+      🖥️ Request Screen
+    </button>
+
+    <button onclick="sendCommand('files')">
+      📁 Files
+    </button>
+
+    <button class="danger" onclick="sendCommand('lock')">
+      🔒 Lock Device
+    </button>
+
+    <div id="message"></div>
+
+  </div>
+
+
+  <!-- Permission -->
+  <div class="card">
+
+    <h2>🔐 Authorization</h2>
+
+    <p>
+      Remote controls work only when the device owner
+      has explicitly paired and authorized the device.
+    </p>
+
+    <button onclick="pairDevice()">
+      🔗 Pair Device
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+function sendCommand(command) {
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent =
+    "Command selected: " + command;
+
+  /*
+    Later this function will send the command
+    through an authenticated WebSocket connection
+    to your authorized Android device.
+  */
+}
+
+
+function pairDevice() {
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent =
+    "Pairing will require confirmation on the Android device.";
+
+}
+
+</script>
+
+</body>
+</html>
