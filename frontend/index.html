@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mobile Control</title>
+</head>
+
+<body>
+
+<h1>Remote Mobile Control</h1>
+
+<input id="token" type="password"
+       placeholder="Admin token">
+
+<button onclick="connect()">
+  Connect
+</button>
+
+<h2>Devices</h2>
+
+<div id="devices"></div>
+
+<hr>
+
+<h2>Controls</h2>
+
+<input id="x" type="number" placeholder="X">
+<input id="y" type="number" placeholder="Y">
+
+<button onclick="send('tap')">
+  TAP
+</button>
+
+<button onclick="send('back')">
+  BACK
+</button>
+
+<button onclick="send('home')">
+  HOME
+</button>
+
+<br><br>
+
+<input id="x2" type="number" placeholder="End X">
+<input id="y2" type="number" placeholder="End Y">
+
+<button onclick="send('swipe')">
+  SWIPE
+</button>
+
+<script src="app.js"></script>
+
+</body>
+</html>
